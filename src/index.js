@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Face from './Face';
 import reportWebVitals from './reportWebVitals';
+//import { arch } from 'd3-shape';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Face />
   </React.StrictMode>,
   document.getElementById('root')
 );
