@@ -9,7 +9,7 @@ const eyeOffsetX = 90;
 const eyeOffsetY = 100;
 const eyeRadius = 50;
 const mouthWidth = 20;
-const mouthRadius = 130;
+const mouthRadius = 150;
 
 const mouthArc = arc()
   .innerRadius(mouthRadius)
@@ -17,26 +17,35 @@ const mouthArc = arc()
   .startAngle(Math.PI / 2)
   .endAngle(Math.PI * 3/2);
 
+const BackgroundCircle = ({radius}) => (
+  <circle
+    r={radius}
+    fill="yellow"
+    stroke="black"
+    stroke-width={strokeWidth}
+  />
+);
+
+const Eye = ({offsetX, offsetY, radius}) =>(
+  <circle
+    cx={offsetX}
+    cy={offsetY}
+    r={radius}
+  />
+);
+
+const Smile = () =>(
+  <path d={mouthArc()}/>
+)
+
+
 const Face = () =>
   (<svg width={width} height={height} >
     <g transform={`translate(${centerX},${centerY})`}>
-      <circle
-        r={centerY - strokeWidth / 2}
-        fill="yellow"
-        stroke="black"
-        stroke-width={strokeWidth}
-      />
-      <circle
-        cx={-eyeOffsetX}
-        cy={-eyeOffsetY}
-        r={eyeRadius}
-      />
-      <circle
-        cx={eyeOffsetX}
-        cy={-eyeOffsetY}
-        r={eyeRadius}
-      />
-      <path d={mouthArc()}/>
+      <BackgroundCircle radius={centerY - strokeWidth / 2} />
+      <Eye offsetX={-eyeOffsetX} offsetY={-eyeOffsetY} radius={eyeRadius}/>
+      <Eye offsetX={eyeOffsetX} offsetY={-eyeOffsetY} radius={eyeRadius}/>
+      <Smile />
     </g>
   </svg>);
 
